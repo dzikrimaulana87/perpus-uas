@@ -33,7 +33,7 @@ public class siswa extends javax.swing.JFrame {
         String carii = cari.getText();
         
         try{
-            Statement state=pkk.koneksi.konek().createStatement();
+            Statement state=pkk.Koneksi.konek().createStatement();
             String sql = "select * from siswa WHERE nama LIKE '%"+carii+"%'OR kelas LIKE '"+carii+"'" ;
             ResultSet cari = state.executeQuery(sql);
             
@@ -54,7 +54,7 @@ public class siswa extends javax.swing.JFrame {
         tabledor.setModel(tablek);
         
         try{
-            Statement state=pkk.koneksi.konek().createStatement();
+            Statement state=pkk.Koneksi.konek().createStatement();
             String sql = "select * from siswa ";
             ResultSet cari = state.executeQuery(sql);
             
@@ -305,7 +305,7 @@ public class siswa extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try{
-            Statement state = pkk.koneksi.konek().createStatement();
+            Statement state = pkk.Koneksi.konek().createStatement();
             String sql = "INSERT INTO siswa VALUES ('"+nis.getText()+"','"+nama.getText()+"','"+kelas.getText()+"')";
             state.executeUpdate(sql);
             JOptionPane.showMessageDialog(null, "Data Tersimpan");
@@ -318,7 +318,7 @@ public class siswa extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try{
-            Statement state = pkk.koneksi.konek().createStatement();
+            Statement state = pkk.Koneksi.konek().createStatement();
             String sql = "delete from siswa where nis= '"+nis.getText()+"'";
             state.executeUpdate(sql);
             JOptionPane.showMessageDialog(null, "Data Dihapus");
@@ -331,7 +331,7 @@ public class siswa extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         try{
-            Statement state = pkk.koneksi.konek().createStatement();
+            Statement state = pkk.Koneksi.konek().createStatement();
             String sql = "update siswa set nama='"+nama.getText()+"',kelas='"+kelas.getText()+"' where nis='"+nis.getText()+"'";
             state.executeUpdate(sql);
             JOptionPane.showMessageDialog(null, "Data Di Edit");

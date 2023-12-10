@@ -31,7 +31,7 @@ public class petugas extends javax.swing.JFrame {
         tabledor.setModel(tablek);
         
         try{
-            Statement state=pkk.koneksi.konek().createStatement();
+            Statement state=pkk.Koneksi.konek().createStatement();
             String sql = "select * from petugas ";
             ResultSet cari = state.executeQuery(sql);
             
@@ -296,7 +296,7 @@ public class petugas extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try{
-            Statement state = pkk.koneksi.konek().createStatement();
+            Statement state = pkk.Koneksi.konek().createStatement();
             String sql = "INSERT INTO petugas VALUES ('"+id_petugas.getText()+"','"+nama_petugas.getText()+"','"+username.getText()+"','"+password.getText()+"','"+level.getSelectedItem()+"')";
             state.executeUpdate(sql);
             JOptionPane.showMessageDialog(null, "Data Tersimpan");
@@ -309,7 +309,7 @@ public class petugas extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try{
-            Statement state = pkk.koneksi.konek().createStatement();
+            Statement state = pkk.Koneksi.konek().createStatement();
             String sql = "delete from petugas where id_petugas= '"+id_petugas.getText()+"'";
             state.executeUpdate(sql);
             JOptionPane.showMessageDialog(null, "Data Dihapus");
@@ -322,7 +322,7 @@ public class petugas extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         try{
-            Statement state = pkk.koneksi.konek().createStatement();
+            Statement state = pkk.Koneksi.konek().createStatement();
             String sql = "update petugas set nama_petugas='"+nama_petugas.getText()+"',username='"+username.getText()+"',password='"+password.getText()+"',level='"+level.getSelectedItem()+"' where id_petugas='"+id_petugas.getText()+"'";
             state.executeUpdate(sql);
             JOptionPane.showMessageDialog(null, "Data Di Edit");

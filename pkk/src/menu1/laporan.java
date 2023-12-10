@@ -28,7 +28,7 @@ public class laporan extends javax.swing.JFrame {
         harian.addItem("~Pilih~");
         try {
             String Sql ="SELECT*FROM peminjaman";
-            Statement st= pkk.koneksi.konek().createStatement();
+            Statement st= pkk.Koneksi.konek().createStatement();
             ResultSet pinjam = st.executeQuery(Sql);
             while(pinjam.next()){
             String AliasKode= pinjam.getString("tanggal_pinjam");
@@ -178,7 +178,7 @@ public class laporan extends javax.swing.JFrame {
     private void harianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_harianActionPerformed
         try {
             String Sql="select * from peminjaman where tanggal_pinjam='"+harian.getSelectedItem()+"'";
-            Statement state = pkk.koneksi.konek().createStatement();
+            Statement state = pkk.Koneksi.konek().createStatement();
             ResultSet pinjam =state.executeQuery(Sql);
             while(pinjam.next()){
             }

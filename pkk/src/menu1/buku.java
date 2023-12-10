@@ -30,58 +30,60 @@ public class buku extends javax.swing.JFrame {
         teangan();
         hapuse.setEnabled(false);
     }
-    
-     protected void load_table() {
-        Object[]baris={"Kode Buku","Judul Buku","Tanggal Beli","Pengarang","Penerbit","Tahun Terbit","Jumlah Buku"};
+
+    protected void load_table() {
+        Object[] baris = {"Kode Buku", "Judul Buku", "Tanggal Beli", "Pengarang", "Penerbit", "Tahun Terbit", "Jumlah Buku"};
         DefaultTableModel tablek = new DefaultTableModel(null, baris);
         tabledor.setModel(tablek);
-        
-        try{
-            Statement state=pkk.koneksi.konek().createStatement();
+
+        try {
+            Statement state = pkk.Koneksi.konek().createStatement();
             String sql = "select * from buku ";
             ResultSet cari = state.executeQuery(sql);
-            
-            while (cari.next()){
-            String a = cari.getString(1);
-            String b = cari.getString(2);
-            String c = cari.getString(3);
-            String d = cari.getString(4);
-            String e = cari.getString(5);
-            String f = cari.getString(6);
-            String g = cari.getString(7);
-            Object[]data={a,b,c,d,e,f,g};
-            tablek.addRow(data);
+
+            while (cari.next()) {
+                String a = cari.getString(1);
+                String b = cari.getString(2);
+                String c = cari.getString(3);
+                String d = cari.getString(4);
+                String e = cari.getString(5);
+                String f = cari.getString(6);
+                String g = cari.getString(7);
+                Object[] data = {a, b, c, d, e, f, g};
+                tablek.addRow(data);
+            }
+        } catch (Exception e) {
         }
-    }catch (Exception e){
     }
-    }
-     private void teangan() {
-        Object[]baris={"Kode Buku","Judul Buku","Tanggal Beli","Pengarang","Penerbit","Tahun Terbit","Jumlah Buku"};
+
+    private void teangan() {
+        Object[] baris = {"Kode Buku", "Judul Buku", "Tanggal Beli", "Pengarang", "Penerbit", "Tahun Terbit", "Jumlah Buku"};
         DefaultTableModel tablek = new DefaultTableModel(null, baris);
         tabledor.setModel(tablek);
         String carii = cari.getText();
-        
-        try{
-            Statement state=pkk.koneksi.konek().createStatement();
-            String sql = "select * from buku WHERE kode_buku LIKE '%"+carii+"%'OR judul_buku LIKE '"+carii+"'" ;
+
+        try {
+            Statement state = pkk.Koneksi.konek().createStatement();
+            String sql = "select * from buku WHERE kode_buku LIKE '%" + carii + "%'OR judul_buku LIKE '" + carii + "'";
             ResultSet cari = state.executeQuery(sql);
-            
-            while (cari.next()){
-            String a = cari.getString(1);
-            String b = cari.getString(2);
-            String c = cari.getString(3);
-            String d = cari.getString(4);
-            String e = cari.getString(5);
-            String f = cari.getString(6);
-            String g = cari.getString(7);
-            Object[]data={a,b,c,d,e,f,g};
-            tablek.addRow(data);
+
+            while (cari.next()) {
+                String a = cari.getString(1);
+                String b = cari.getString(2);
+                String c = cari.getString(3);
+                String d = cari.getString(4);
+                String e = cari.getString(5);
+                String f = cari.getString(6);
+                String g = cari.getString(7);
+                Object[] data = {a, b, c, d, e, f, g};
+                tablek.addRow(data);
+            }
+        } catch (Exception e) {
+            System.out.println("Data Gak ada!");
         }
-    }catch (Exception e){
-        System.out.println("Data Gak ada!");
     }
-    }
-        private void kosong(){
+
+    private void kosong() {
         kode_buku.setText("");
         judul_buku.setText("");
         tanggal_beli.setText("");
@@ -90,9 +92,7 @@ public class buku extends javax.swing.JFrame {
         tahun_terbit.setText(null);
         jumlah_buku.setText("");
         cari.setText("");
-        }
-
-     
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -413,29 +413,36 @@ public class buku extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try{
-        Statement state = pkk.koneksi.konek().createStatement();
-        String sql = "INSERT INTO buku VALUES ('"+kode_buku.getText()+"','"+judul_buku.getText()+"','"+tanggal_beli.getText().toString()+"','"+pengarang.getText()+"','"+penerbit.getText()+"','"+tahun_terbit.getText()+"','"+jumlah_buku.getText()+"')";
-        state.executeUpdate(sql);
-        JOptionPane.showMessageDialog(null, "Data Tersimpan");
-        }catch (Exception e){
-            JOptionPane.showMessageDialog(null, "Data Tidak Tersimpan");
+        try {
+            Statement state = pkk.Koneksi.konek().createStatement();
+            String sql = "INSERT INTO buku VALUES ('" + kode_buku.getText() + "','" + judul_buku.getText() + "','" + tanggal_beli.getText().toString() + "','" + pengarang.getText() + "','" + penerbit.getText() + "','" + tahun_terbit.getText() + "','" + jumlah_buku.getText() + "')";
+            state.executeUpdate(sql);
+            JOptionPane.showMessageDialog(null, "Data Tersimpan");
+        } catch (Exception e) {
+            String errorMessage = e.getMessage();
+
+            if (errorMessage.contains("Duplicate entry") && errorMessage.contains("for key 'PRIMARY'")) {
+                JOptionPane.showMessageDialog(null, "Gagal menyimpan buku. Kode buku sudah ada.");
+            } else {
+                JOptionPane.showMessageDialog(null, "Terjadi kesalahan: " + errorMessage);
+            }
         }
+
         load_table();
         kosong();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btncariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncariActionPerformed
-       teangan();
+        teangan();
     }//GEN-LAST:event_btncariActionPerformed
 
     private void hapuseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapuseActionPerformed
-       try{
-        Statement state = pkk.koneksi.konek().createStatement();
-        String sql = "delete from buku where kode_buku = '"+kode_buku.getText()+"'";
-        state.executeUpdate(sql);
-        JOptionPane.showMessageDialog(null, "Data Dihapus");
-        }catch (Exception e){
+        try {
+            Statement state = pkk.Koneksi.konek().createStatement();
+            String sql = "delete from buku where kode_buku = '" + kode_buku.getText() + "'";
+            state.executeUpdate(sql);
+            JOptionPane.showMessageDialog(null, "Data Dihapus");
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Data Tidak Dihapus");
         }
         load_table();
@@ -461,12 +468,12 @@ public class buku extends javax.swing.JFrame {
     }//GEN-LAST:event_tabledorMouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        try{
-        Statement state = pkk.koneksi.konek().createStatement();
-        String sql = "update buku set judul_buku='"+judul_buku.getText()+"',tanggal_beli='"+tanggal_beli.getText().toString()+"',penerbit='"+penerbit.getText()+"',pengarang='"+pengarang.getText()+"',tahun_terbit='"+tahun_terbit.getText()+"',jumlah_buku='"+jumlah_buku.getText()+"' where kode_buku='"+kode_buku.getText()+"'";
-        state.executeUpdate(sql);
-        JOptionPane.showMessageDialog(null, "Data Di Edit");
-        }catch (Exception e){
+        try {
+            Statement state = pkk.Koneksi.konek().createStatement();
+            String sql = "update buku set judul_buku='" + judul_buku.getText() + "',tanggal_beli='" + tanggal_beli.getText().toString() + "',penerbit='" + penerbit.getText() + "',pengarang='" + pengarang.getText() + "',tahun_terbit='" + tahun_terbit.getText() + "',jumlah_buku='" + jumlah_buku.getText() + "' where kode_buku='" + kode_buku.getText() + "'";
+            state.executeUpdate(sql);
+            JOptionPane.showMessageDialog(null, "Data Di Edit");
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Data Tidak Di Edit");
         }
         load_table();

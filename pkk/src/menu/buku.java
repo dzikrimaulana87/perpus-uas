@@ -36,7 +36,7 @@ public class buku extends javax.swing.JFrame {
         tabledor.setModel(tablek);
         
         try{
-            Statement state=pkk.koneksi.konek().createStatement();
+            Statement state=pkk.Koneksi.konek().createStatement();
             String sql = "select * from buku ";
             ResultSet cari = state.executeQuery(sql);
             
@@ -61,7 +61,7 @@ public class buku extends javax.swing.JFrame {
         String carii = cari.getText();
         
         try{
-            Statement state=pkk.koneksi.konek().createStatement();
+            Statement state=pkk.Koneksi.konek().createStatement();
             String sql = "select * from buku WHERE kode_buku LIKE '%"+carii+"%'OR judul_buku LIKE '"+carii+"'" ;
             ResultSet cari = state.executeQuery(sql);
             
@@ -413,7 +413,7 @@ public class buku extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try{
-        Statement state = pkk.koneksi.konek().createStatement();
+        Statement state = pkk.Koneksi.konek().createStatement();
         String sql = "INSERT INTO buku VALUES ('"+kode_buku.getText()+"','"+judul_buku.getText()+"','"+tanggal_beli.getText().toString()+"','"+pengarang.getText()+"','"+penerbit.getText()+"','"+tahun_terbit.getText()+"','"+jumlah_buku.getText()+"')";
         state.executeUpdate(sql);
         JOptionPane.showMessageDialog(null, "Data Tersimpan");
@@ -430,7 +430,7 @@ public class buku extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
        try{
-        Statement state = pkk.koneksi.konek().createStatement();
+        Statement state = pkk.Koneksi.konek().createStatement();
         String sql = "delete from buku where kode_buku = '"+kode_buku.getText()+"'";
         state.executeUpdate(sql);
         JOptionPane.showMessageDialog(null, "Data Dihapus");
@@ -461,7 +461,7 @@ public class buku extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         try{
-        Statement state = pkk.koneksi.konek().createStatement();
+        Statement state = pkk.Koneksi.konek().createStatement();
         String sql = "update buku set judul_buku='"+judul_buku.getText()+"',tanggal_beli='"+tanggal_beli.getText().toString()+"',penerbit='"+penerbit.getText()+"',pengarang='"+pengarang.getText()+"',tahun_terbit='"+tahun_terbit.getText()+"',jumlah_buku='"+jumlah_buku.getText()+"' where kode_buku='"+kode_buku.getText()+"'";
         state.executeUpdate(sql);
         JOptionPane.showMessageDialog(null, "Data Di Edit");

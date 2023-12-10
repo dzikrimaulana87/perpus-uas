@@ -6,6 +6,9 @@
 package pkk;
 
 import java.awt.event.KeyEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -168,10 +171,10 @@ public class login extends javax.swing.JFrame {
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
         // TODO add your handling code here:
         String pilihan[]={
-            "Yakin lah","Ngga Jadi"
+            "Ya","Tidak"
         };
         int tny = JOptionPane.showOptionDialog(null,
-                   "Yakin Pengen Keluar?","",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null,pilihan,pilihan[0]);
+                   "Yakin ingin keluar dari aplikasi?","",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null,pilihan,pilihan[0]);
                    if (tny==0){
                        try {
                            System.exit(0);
@@ -181,46 +184,55 @@ public class login extends javax.swing.JFrame {
     }//GEN-LAST:event_exitActionPerformed
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
-        // TODO add your handling code here:
+        
         String username = user.getText();
         String password = pass.getText();
-        if(username.equals("") & password.equals(""))
-        {
-            JOptionPane.showMessageDialog(rootPane,"isi dulu dong  >:(");
-        }else {
-            try {
-                Statement state = koneksi.konek().createStatement();
-                String sql = "SELECT * FROM petugas WHERE username = '"+username+"'";
-                ResultSet rows =  state.executeQuery(sql);
+        
+        if (!isValidInput(username) || !isValidInput(password)) {
+        JOptionPane.showMessageDialog(rootPane, "Inputan mengandung karakter yang tidak diizinkan", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    
+    if (password.equals("") || username.equals("")) {
+        JOptionPane.showMessageDialog(rootPane, "Username atau Password belum diisi");
+    } else {
+        try {
+            Connection connection = Koneksi.konek(); // Menggunakan metode konek() dari class Koneksi
+            
+            String sql = "SELECT * FROM petugas WHERE username = ? AND password = ?";
+            
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                preparedStatement.setString(1, username);
+                preparedStatement.setString(2, password);
                 
-                if (rows.next())
-                {   
-                    if (rows.getString("level").equals("kepsek"))
-                    {
-                            JOptionPane.showMessageDialog(null, "Ciee bisa login :v");
-                            new menu.menu_utama().show();
-                            dispose();
-                        }else 
-                        if (rows.getString("level").equals("admin"))
-                        {
-                            JOptionPane.showMessageDialog(null, "Ciee bisa login :v");
-                            new menu1.menu_utama1().show();
-                            dispose();
+                try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                    if (resultSet.next()) {
+                        String userLevel = resultSet.getString("level");
+                        JOptionPane.showMessageDialog(null, "Login Berhasil");
+                        
+                        if ("kepsek".equals(userLevel)) {
+                            new menu.menu_utama().setVisible(true);
+                        } else if ("admin".equals(userLevel)) {
+                            new menu1.menu_utama1().setVisible(true);
                         }
-                }else{
-                    JOptionPane.showMessageDialog(null,"Username atau password ada yang salah koawokwoawakwo");
+                        dispose();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Username atau password salah");
+                    }
                 }
-                
-            } catch (SQLException ex) 
-                {
-                Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ClassNotFoundException ex) 
-            {
-                Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
-         }
-            } 
-    }//GEN-LAST:event_loginActionPerformed
+            }
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
+
+    }//GEN-LAST:event_loginActionPerformed
+// Memeriksa apakah inputan mengandung karakter yang tidak diizinkan
+private boolean isValidInput(String input) {
+    String regex = "^[a-zA-Z0-9]+$";
+    return input.matches(regex);
+}
     private void loginKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_loginKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_loginKeyPressed

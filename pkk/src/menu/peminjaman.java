@@ -37,7 +37,7 @@ public class peminjaman extends javax.swing.JFrame {
         kdbuku.addItem("~Pilih~");
         try {
             String Sql ="SELECT*FROM buku";
-            Statement st= pkk.koneksi.konek().createStatement();
+            Statement st= pkk.Koneksi.konek().createStatement();
             ResultSet pinjam = st.executeQuery(Sql);
             while(pinjam.next()){
             String AliasKode= pinjam.getString("kode_buku");
@@ -53,7 +53,7 @@ public class peminjaman extends javax.swing.JFrame {
         cbnis.addItem("~Pilih~");
         try {
             String Sql ="SELECT*FROM siswa";
-            Statement st= pkk.koneksi.konek().createStatement();
+            Statement st= pkk.Koneksi.konek().createStatement();
             ResultSet pinjam = st.executeQuery(Sql);
             while(pinjam.next()){
             String AliasKode= pinjam.getString("nis");
@@ -69,7 +69,7 @@ public class peminjaman extends javax.swing.JFrame {
         idpetugas.addItem("~Pilih~");
         try {
             String Sql ="SELECT*FROM petugas";
-            Statement st= pkk.koneksi.konek().createStatement();
+            Statement st= pkk.Koneksi.konek().createStatement();
             ResultSet pinjam = st.executeQuery(Sql);
             while(pinjam.next()){
             String AliasKode= pinjam.getString("id_petugas");
@@ -86,7 +86,7 @@ public class peminjaman extends javax.swing.JFrame {
         tabledor.setModel(tablek);
         
         try{
-            Statement state=pkk.koneksi.konek().createStatement();
+            Statement state=pkk.Koneksi.konek().createStatement();
             String sql = "select * from peminjaman ";
             ResultSet cari = state.executeQuery(sql);
             
@@ -113,7 +113,7 @@ public class peminjaman extends javax.swing.JFrame {
         String carii = cari.getText();
         
         try{
-            Statement state=pkk.koneksi.konek().createStatement();
+            Statement state=pkk.Koneksi.konek().createStatement();
             String sql = "select * from peminjaman WHERE kode_peminjaman LIKE '%"+carii+"%'OR judul_buku LIKE '"+carii+"'" ;
             ResultSet cari = state.executeQuery(sql);
             
@@ -434,7 +434,7 @@ public class peminjaman extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
          try{
-        Statement state = pkk.koneksi.konek().createStatement();
+        Statement state = pkk.Koneksi.konek().createStatement();
         String sql = "INSERT INTO peminjaman VALUES ('"+kdpeminjaman.getText()+"','"+tglpinjam.getText()+"','"+cbnis.getSelectedItem()+"','"+nama.getText()+"','"+kelas.getText()+"','"+kdbuku.getSelectedItem()+"','"+jdlbuku.getText()+"','"+jmlhbuku.getText()+"','"+idpetugas.getSelectedItem()+"')";
         state.executeUpdate(sql);
         String pilihan[]={
@@ -458,7 +458,7 @@ public class peminjaman extends javax.swing.JFrame {
     private void kdbukuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kdbukuActionPerformed
         try {
             String Sql="select * from buku where kode_buku='"+kdbuku.getSelectedItem().toString()+"'";
-            Statement state = pkk.koneksi.konek().createStatement();
+            Statement state = pkk.Koneksi.konek().createStatement();
             ResultSet pinjam =state.executeQuery(Sql);
             while(pinjam.next()){
                 jdlbuku.setText(pinjam.getString("judul_buku"));
@@ -473,7 +473,7 @@ public class peminjaman extends javax.swing.JFrame {
     private void cbnisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbnisActionPerformed
        try {
             String Sql="select * from siswa where nis='"+cbnis.getSelectedItem().toString()+"'";
-            Statement state = pkk.koneksi.konek().createStatement();
+            Statement state = pkk.Koneksi.konek().createStatement();
             ResultSet pinjam =state.executeQuery(Sql);
             while(pinjam.next()){
                 nama.setText(pinjam.getString("nama"));
@@ -487,7 +487,7 @@ public class peminjaman extends javax.swing.JFrame {
     private void idpetugasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idpetugasActionPerformed
         try{
             String Sql="select * from petugas where id_petugas='"+idpetugas.getSelectedItem().toString()+"'";
-            Statement state = pkk.koneksi.konek().createStatement();
+            Statement state = pkk.Koneksi.konek().createStatement();
             ResultSet pinjam =state.executeQuery(Sql);
         } catch (Exception e){
             
@@ -527,7 +527,7 @@ public class peminjaman extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         try{
-        Statement state = pkk.koneksi.konek().createStatement();
+        Statement state = pkk.Koneksi.konek().createStatement();
         String sql = "delete from peminjaman where kode_peminjaman= '"+kdpeminjaman.getText()+"'";
         state.executeUpdate(sql);
         JOptionPane.showMessageDialog(null, "Data Dihapus");
@@ -540,7 +540,7 @@ public class peminjaman extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         try{
-        Statement state = pkk.koneksi.konek().createStatement();
+        Statement state = pkk.Koneksi.konek().createStatement();
         String sql = "update peminjaman set tanggal_pinjam='"+tglpinjam.getText()+"',nis='"+cbnis.getSelectedItem().toString()+"',nama='"+nama.getText()+"',kelas='"+kelas.getText()+"',kode_buku='"+kdbuku.getSelectedItem()+"',judul_buku='"+jdlbuku.getText()+"',jumlah_buku='"+jmlhbuku.getText()+"',id_petugas='"+idpetugas.getSelectedItem()+"' where kode_peminjaman='"+kdpeminjaman.getText()+"'";
         state.executeUpdate(sql);
         JOptionPane.showMessageDialog(null, "Data Di Edit");

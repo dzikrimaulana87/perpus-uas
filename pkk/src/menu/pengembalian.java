@@ -34,7 +34,7 @@ public class pengembalian extends javax.swing.JFrame {
         String carii = cari.getText();
         
         try{
-            Statement state=pkk.koneksi.konek().createStatement();
+            Statement state=pkk.Koneksi.konek().createStatement();
             String sql = "select * from pengembalian WHERE kode_pengembalian LIKE '%"+carii+"%'OR judul_buku LIKE '"+carii+"'" ;
             ResultSet cari = state.executeQuery(sql);
             
@@ -63,7 +63,7 @@ public class pengembalian extends javax.swing.JFrame {
         kode_peminjaman.addItem("~Pilih~");
         try {
             String Sql ="SELECT*FROM peminjaman";
-            Statement st= pkk.koneksi.konek().createStatement();
+            Statement st= pkk.Koneksi.konek().createStatement();
             ResultSet pinjam = st.executeQuery(Sql);
             while(pinjam.next()){
             String AliasKode= pinjam.getString("kode_peminjaman");
@@ -80,7 +80,7 @@ public class pengembalian extends javax.swing.JFrame {
         tabledor.setModel(tablek);
         
         try{
-            Statement state=pkk.koneksi.konek().createStatement();
+            Statement state=pkk.Koneksi.konek().createStatement();
             String sql = "select * from pengembalian ";
             ResultSet cari = state.executeQuery(sql);
             
@@ -423,7 +423,7 @@ public class pengembalian extends javax.swing.JFrame {
     private void kode_peminjamanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kode_peminjamanActionPerformed
         try {
             String Sql="select * from peminjaman where kode_peminjaman='"+kode_peminjaman.getSelectedItem()+"'";
-            Statement state = pkk.koneksi.konek().createStatement();
+            Statement state = pkk.Koneksi.konek().createStatement();
             ResultSet pinjam =state.executeQuery(Sql);
             while(pinjam.next()){
                 tanggal_peminjaman.setText(pinjam.getString("tanggal_pinjam"));
@@ -445,7 +445,7 @@ public class pengembalian extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         try{
-        Statement state = pkk.koneksi.konek().createStatement();
+        Statement state = pkk.Koneksi.konek().createStatement();
         String sql = "UPDATE pengembalian SET tanggal_pengembalian='"+tanggal_pengembalian.getText()+"',kode_peminjaman='"+kode_peminjaman.getSelectedItem().toString()+"',tanggal_peminjaman='"+tanggal_peminjaman.getText()+"',nis='"+nis.getText()+"',nama='"+nama.getText()+"',kelas='"+kelas.getText()+"',kode_buku='"+kode_buku.getText()+"',nama_buku='"+nama_buku.getText()+"',jumlah_buku='"+jumlah_buku.getText()+"',keterlambatan='"+keterlambatan.getText()+"',denda='"+denda.getText()+"' where kode_pengembalian='"+kode_pengembalian.getText()+"'";
         state.executeUpdate(sql);
         JOptionPane.showMessageDialog(null, "Data Di Edit");
@@ -479,7 +479,7 @@ public class pengembalian extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         try{
-        Statement state = pkk.koneksi.konek().createStatement();
+        Statement state = pkk.Koneksi.konek().createStatement();
         String sql = "INSERT INTO pengembalian VALUES ('"+kode_pengembalian.getText()+"','"+tanggal_pengembalian.getText()+"','"+kode_peminjaman.getSelectedItem().toString()+"','"+tanggal_peminjaman.getText()+"','"+nis.getText()+"','"+nama.getText()+"','"+kelas.getText()+"','"+kode_buku.getText()+"','"+nama_buku.getText()+"','"+jumlah_buku.getText()+"','"+keterlambatan.getText()+"','"+denda.getText()+"')";
         state.executeUpdate(sql);
         JOptionPane.showMessageDialog(null, "Data Tersimpan");
@@ -492,7 +492,7 @@ public class pengembalian extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         try{
-        Statement state = pkk.koneksi.konek().createStatement();
+        Statement state = pkk.Koneksi.konek().createStatement();
         String sql = "delete from pengembalian where kode_pengembalian= '"+kode_pengembalian.getText()+"'";
         state.executeUpdate(sql);
         JOptionPane.showMessageDialog(null, "Data Dihapus");
