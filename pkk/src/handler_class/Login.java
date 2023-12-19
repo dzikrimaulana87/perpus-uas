@@ -35,7 +35,7 @@ public class Login {
                         String userLevel = resultSet.getString("level");
                         JOptionPane.showMessageDialog(null, "Login Berhasil");
 
-                        if ("kepsek".equals(userLevel)) {
+                        if ("superadmin".equals(userLevel)) {
                             new menu_superadmin.menu_utama_superadmin().setVisible(true);
                         } else if ("admin".equals(userLevel)) {
                             new menu_main.Menu_utama().setVisible(true);
