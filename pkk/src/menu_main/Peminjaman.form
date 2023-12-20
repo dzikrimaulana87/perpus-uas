@@ -70,29 +70,29 @@
                               </Group>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <Component id="kdpeminjaman" min="-2" pref="250" max="-2" attributes="0"/>
+                                      <Component id="kodePeminjaman" min="-2" pref="250" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                                       <Component id="cbnis" min="-2" pref="250" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                                       <Component id="kdbuku" min="-2" pref="250" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="1" attributes="0">
+                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                           <Group type="102" attributes="0">
-                                              <Component id="idpetugas" min="-2" pref="250" max="-2" attributes="0"/>
+                                              <Component id="idPetugas" min="-2" pref="250" max="-2" attributes="0"/>
                                               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                                               <Component id="kelas" min="-2" pref="250" max="-2" attributes="0"/>
                                           </Group>
-                                          <Group type="102" alignment="1" attributes="0">
-                                              <Component id="tglpinjam" min="-2" pref="250" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                                          <Group type="102" attributes="0">
+                                              <Component id="tanggalPinjam" max="32767" attributes="0"/>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                               <Component id="nama" min="-2" pref="250" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jdlbuku" min="-2" pref="250" max="-2" attributes="0"/>
-                                          <Component id="jmlhbuku" min="-2" pref="250" max="-2" attributes="0"/>
+                                          <Component id="judulBuku" min="-2" pref="250" max="-2" attributes="0"/>
+                                          <Component id="jumlahBuku" min="-2" pref="250" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
@@ -125,21 +125,23 @@
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="kdpeminjaman" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                              <Component id="kodePeminjaman" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                               <Component id="cbnis" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                               <Component id="kdbuku" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="tglpinjam" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                              <Component id="nama" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                              <Component id="jdlbuku" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="nama" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                                  <Component id="judulBuku" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="tanggalPinjam" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="kelas" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                              <Component id="jmlhbuku" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                              <Component id="idpetugas" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                              <Component id="jumlahBuku" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                              <Component id="idPetugas" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
                       </Group>
@@ -167,7 +169,7 @@
             <Property name="text" type="java.lang.String" value="Peminjaman Buku"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="kdpeminjaman">
+        <Component class="javax.swing.JTextField" name="kodePeminjaman">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ef" green="ef" red="d0" type="rgb"/>
@@ -177,6 +179,10 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Kode Peminjaman"/>
           </Properties>
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="kodePeminjamanFocusGained"/>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="kodePeminjamanFocusLost"/>
+          </Events>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">
           <AuxValues>
@@ -253,6 +259,9 @@
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tabledorMouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -341,17 +350,6 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnKeluarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="tglpinjam">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ef" green="ef" red="d0" type="rgb"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="99" green="99" red="99" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Tanggal Pinjam (YYYY-MM-DD)"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JTextField" name="nama">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -362,6 +360,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Nama"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="namaActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="kelas">
           <Properties>
@@ -374,7 +375,7 @@
             <Property name="text" type="java.lang.String" value="Kelas"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jdlbuku">
+        <Component class="javax.swing.JTextField" name="judulBuku">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ef" green="ef" red="d0" type="rgb"/>
@@ -385,10 +386,10 @@
             <Property name="text" type="java.lang.String" value="Judul Buku"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jdlbukuActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="judulBukuActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="jmlhbuku">
+        <Component class="javax.swing.JTextField" name="jumlahBuku">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ef" green="ef" red="d0" type="rgb"/>
@@ -399,40 +400,20 @@
             <Property name="text" type="java.lang.String" value="Jumlah Buku"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmlhbukuActionPerformed"/>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jumlahBukuFocusGained"/>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jumlahBukuFocusLost"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jumlahBukuActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JComboBox" name="idpetugas">
-          <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="5">
-                <StringItem index="0" value="ID Petugas"/>
-                <StringItem index="1" value="1"/>
-                <StringItem index="2" value="2"/>
-                <StringItem index="3" value="3"/>
-                <StringItem index="4" value="4"/>
-              </StringArray>
-            </Property>
-          </Properties>
+        <Component class="javax.swing.JComboBox" name="idPetugas">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="idpetugasActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="idPetugasActionPerformed"/>
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
         <Component class="javax.swing.JComboBox" name="cbnis">
-          <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="5">
-                <StringItem index="0" value="NIS"/>
-                <StringItem index="1" value="171805432"/>
-                <StringItem index="2" value="17180552"/>
-                <StringItem index="3" value="17180556"/>
-                <StringItem index="4" value="17180557"/>
-              </StringArray>
-            </Property>
-          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbnisActionPerformed"/>
           </Events>
@@ -458,6 +439,14 @@
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
+        </Component>
+        <Component class="com.toedter.calendar.JDateChooser" name="tanggalPinjam">
+          <Properties>
+            <Property name="dateFormatString" type="java.lang.String" value="d MMM, y"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tanggalPinjamMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

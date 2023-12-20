@@ -16,17 +16,17 @@ public class Menu_utama extends javax.swing.JFrame implements AccesAdmin {
     
     @Override
     public void peminjaman() {
-        new menu_main.peminjaman_old().show();
+        new menu_main.Peminjaman().show();
     }
 
     @Override
     public void pengembalian() {
-        new menu_main.pengembalian().show();
+        new menu_main.pengembalian_old().show();
     }
 
     @Override
     public void laporan() {
-        new menu_main.pengembalian().show();
+        new menu_main.pengembalian_old().show();
     }
 
     /**
@@ -185,7 +185,7 @@ public class Menu_utama extends javax.swing.JFrame implements AccesAdmin {
 
     private void menuPengembalianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuPengembalianActionPerformed
         // TODO add your handling code here:
-        new menu_main.pengembalian().show();
+        new menu_main.pengembalian_old().show();
         dispose();
     }//GEN-LAST:event_menuPengembalianActionPerformed
 
