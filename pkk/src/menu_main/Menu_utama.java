@@ -4,13 +4,30 @@
  */
 package menu_main;
 
+import handler_class.AccesAdmin;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author luthf
  */
-public class Menu_utama extends javax.swing.JFrame {
+public class Menu_utama extends javax.swing.JFrame implements AccesAdmin {
+
+    
+    @Override
+    public void peminjaman() {
+        new menu_main.peminjaman_old().show();
+    }
+
+    @Override
+    public void pengembalian() {
+        new menu_main.pengembalian().show();
+    }
+
+    @Override
+    public void laporan() {
+        new menu_main.pengembalian().show();
+    }
 
     /**
      * Creates new form LogIn
@@ -18,6 +35,8 @@ public class Menu_utama extends javax.swing.JFrame {
     public Menu_utama() {
         initComponents();
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -138,7 +157,7 @@ public class Menu_utama extends javax.swing.JFrame {
 
     private void menuPeminjamanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuPeminjamanActionPerformed
         // TODO add your handling code here:
-        new menu_main.peminjaman_old().show();
+        peminjaman();
         dispose();
     }//GEN-LAST:event_menuPeminjamanActionPerformed
 
@@ -160,7 +179,7 @@ public class Menu_utama extends javax.swing.JFrame {
 
     private void menuLaporanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuLaporanActionPerformed
         // TODO add your handling code here:
-        new menu_main.laporan().show();
+        laporan();
         dispose();
     }//GEN-LAST:event_menuLaporanActionPerformed
 
@@ -197,37 +216,6 @@ public class Menu_utama extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

@@ -24,14 +24,7 @@ public class peminjaman_old extends javax.swing.JFrame {
      */
     public peminjaman_old() {
         initComponents();
-        cbbbuku();
-        cbniss();
-        cbpetugas();
-        teangan();
-        load_table();
-        kosong();
-        struk();
-        hapuse.setEnabled(false);
+        
     }
     private void cbbbuku(){
         kdbuku.removeAllItems();
@@ -379,6 +372,12 @@ public class peminjaman_old extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(336, 426, -1, -1));
+
+        tglpinjam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tglpinjamActionPerformed(evt);
+            }
+        });
         jPanel1.add(tglpinjam, new org.netbeans.lib.awtextra.AbsoluteConstraints(148, 127, 192, -1));
 
         jLabel10.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
@@ -557,6 +556,10 @@ public class peminjaman_old extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         struk();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void tglpinjamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tglpinjamActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tglpinjamActionPerformed
 
     /**
      * @param args the command line arguments
